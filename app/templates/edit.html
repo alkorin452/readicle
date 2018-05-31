@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for book in books%}
+    <div class="container text-center"><ul>
+            <li style="list-style-type: none"><h3>{{ book.title }}</h3></li>
+            <li style="list-style-type: none"> {{ book.author }} </li>
+            <li style="list-style-type: none"> {{book.genre }} </li>
+            <li style="list-style-type: none"> {{book.format }} </li>
+            {% if current_user.is_authenticated %}
+            	<li style="list-style-type: none"><a href="/edit/{{ book.id }}" >edit</a></li>
+    
+            	{% if request.path=='/edit/wishlist' %}
+            		<li style="list-style-type: none"><a href="/delete/wishlist/{{ book.id }}" >delete</a></li>
+            		<li style="list-style-type: none"><a href="/moveToShelf/{{ book.id }}" >move</a></li>
+            	
+            	{% else %}
+            		<li style="list-style-type: none"><a href="/delete/index/{{ book.id }}" >delete</a></li>
+            		
+            	{% endif %}
+            {% endif %}
+    </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,10 @@
+app.db
+__pycache__
+dist
+build
+eggs
+parts
+bin
+lib
+lib64
+var
