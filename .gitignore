@@ -1,6 +1,7 @@
 app.db
 __pycache__
 dist
+sdist
 build
 eggs
 parts
@@ -8,3 +9,5 @@ bin
 lib
 lib64
 var
+*.pyc
+venv
