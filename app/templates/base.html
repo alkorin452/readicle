@@ -22,19 +22,18 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
       
-      {% if current_user.is_authenticated %}
-      	 <li><a href="/shelf/{{current_user.id}}">My Shelf</a></li>
-         <li><a href="/wishlist/{{current_user.id}}">Wishlist</a></li>
+       {% if current_user.is_authenticated %}
+      	   <li><a href="/shelf/{{current_user.id}}">My Shelf</a></li>
+           <li><a href="/wishlist/{{current_user.id}}">Wishlist</a></li>
     	
-      {% else %}
-        <li><a href="/login">My Shelf</a></li>
-        <li><a href="/login">Wishlist</a></li>
+       {% else %}
+           <li><a href="/login">My Shelf</a></li>
+           <li><a href="/login">Wishlist</a></li>
     	
-      {% endif %}
+      	{% endif %}
         
         
-        
-        {% if request.path=='/wishlist' or request.path=='/edit/wishlist' %}
+        {% if '/wishlist' in request.path or request.path=='/edit/wishlist' %}
             <li><a href="/addBook/wishlist">Add to Wishlist</a></li>
         	<li><a href="/edit/wishlist"> Edit Wishlist</a></li>
         {% else %}

@@ -133,6 +133,8 @@ def deleteBook(shelfType, bookID):
 @app.route('/wishlist/<int:userID>')
 @login_required
 def wishlist(userID):
+    print(request.script_root)
+    print(current_user.id)
     books = Book.query.filter_by(on_shelf=False, poster_id=userID).all()
     books.reverse()
     return render_template('index.html', title='Home', books=books)
