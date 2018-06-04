@@ -49,9 +49,11 @@ class Book(db.Model):
     def __repr__(self):
         return '<Book {}>'.format(self.title)
 
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
 
 def load_book(id):
     return Book.query.get(int(id))

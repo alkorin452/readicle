@@ -9,7 +9,6 @@ from werkzeug.urls import url_parse
 @app.route('/')
 @app.route('/index')
 def index():
-    # books=Book.query.all()
     books = Book.query.filter_by(on_shelf=True).all()
     books.reverse()
     return render_template('index.html', title='Home', books=books)
@@ -130,6 +129,7 @@ def deleteBook(shelfType, bookID):
     return render_template('edit.html', title='Edit', books=books)
 
 
+# Returns the wishlist of a specific user
 @app.route('/wishlist/<int:userID>')
 @login_required
 def wishlist(userID):
@@ -138,6 +138,7 @@ def wishlist(userID):
     books = Book.query.filter_by(on_shelf=False, poster_id=userID).all()
     books.reverse()
     return render_template('index.html', title='Home', books=books)
+
 
 # Changes the Book.on_shelf to True
 @app.route('/moveToShelf/<int:bookID>')
@@ -150,6 +151,7 @@ def moveToShelf(bookID):
     return redirect(url_for('index'))
 
 
+# Shows the shelf of a specific user
 @app.route('/shelf/<int:userID>')
 @login_required
 def shelf(userID):
