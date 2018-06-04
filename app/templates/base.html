@@ -21,13 +21,23 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-       
+      
+      {% if current_user.is_authenticated %}
+      	 <li><a href="/shelf/{{current_user.id}}">My Shelf</a></li>
+         <li><a href="/wishlist/{{current_user.id}}">Wishlist</a></li>
+    	
+      {% else %}
+        <li><a href="/login">My Shelf</a></li>
+        <li><a href="/login">Wishlist</a></li>
+    	
+      {% endif %}
+        
+        
+        
         {% if request.path=='/wishlist' or request.path=='/edit/wishlist' %}
-            <li><a href="{{ url_for('index') }}">My Shelf</a></li>
             <li><a href="/addBook/wishlist">Add to Wishlist</a></li>
         	<li><a href="/edit/wishlist"> Edit Wishlist</a></li>
         {% else %}
-        	 <li><a href="{{ url_for('wishlist') }}">Wishlist</a></li>
              <li><a href="/addBook/index">Add Book</a></li>
              <li><a href="/edit/index"> Edit Shelf</a></li>
         {% endif %}

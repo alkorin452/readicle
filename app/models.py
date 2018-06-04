@@ -4,7 +4,8 @@ from app import db
 from flask_login import UserMixin
 from app import login
 
-#Model for Users
+
+# Model for Users
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -12,7 +13,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     books = db.relationship('Book', backref='poster', lazy='dynamic')
 
-    #How to print objects of this class
+    # How to print objects of this class
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
@@ -23,7 +24,7 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
 
-#Model for Posts
+# Model for Posts
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
@@ -33,6 +34,7 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
