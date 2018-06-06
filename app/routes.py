@@ -63,11 +63,14 @@ def addBook(shelf):
     if form.validate_on_submit():
         if shelf == "wishlist":
             book = Book(title=form.title.data, author=form.author.data, genre=form.genre.data, format=form.format.data, poster_id=current_user.id, on_shelf=False)
+            db.session.add(book)
+            db.session.commit()
+            return redirect('/wishlist/' + str(current_user.id))
         else:
             book = Book(title=form.title.data, author=form.author.data, genre=form.genre.data, format=form.format.data, poster_id=current_user.id,on_shelf=True)
-        db.session.add(book)
-        db.session.commit()
-        return redirect(url_for('index'))
+            db.session.add(book)
+            db.session.commit()
+            return redirect(url_for('index'))
     return render_template('addBook.html', title='Add Book', form=form)
 
 
