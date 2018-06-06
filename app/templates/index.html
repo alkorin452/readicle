@@ -11,7 +11,7 @@
             
             
         	{% if request.path=='/index' or request.path=='/' %}
-           	 <li style="list-style-type: none"> Posted by: {{user.query.get(book.poster_id).username}} </li>
+           	 <li style="list-style-type: none"> Posted by: <a href="/shelf/{{book.poster_id}}">{{user.query.get(book.poster_id).username}}</a></li>
             {% endif %}
     </div>
     {% endfor %}
