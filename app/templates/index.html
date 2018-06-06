@@ -8,6 +8,11 @@
             <li style="list-style-type: none"> {{ book.author }} </li>
             <li style="list-style-type: none"> {{book.genre }} </li>
             <li style="list-style-type: none"> {{book.format }} </li>
+            
+            
+        	{% if request.path=='/index' or request.path=='/' %}
+           	 <li style="list-style-type: none"> Posted by: {{user.query.get(book.poster_id).username}} </li>
+            {% endif %}
     </div>
     {% endfor %}
 {% endblock %}

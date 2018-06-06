@@ -11,7 +11,7 @@ from werkzeug.urls import url_parse
 def index():
     books = Book.query.filter_by(on_shelf=True).all()
     books.reverse()
-    return render_template('index.html', title='Home', books=books)
+    return render_template('index.html', title='Home', books=books, user=User)
 
 
 @app.route('/login', methods=['GET', 'POST'])
